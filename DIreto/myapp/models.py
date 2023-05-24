@@ -1,10 +1,9 @@
 from django.db import models
-
+import uuid
 # Create your models here.
 #Usuario
 class Categoria(models.Model):
-    id = models.AutoField(primary_key=True)
-    nome = models.CharField(max_length=100)
+    nome = models.CharField(primary_key=True,max_length=100)
 
     def __str__(self):
         return self.nome
@@ -29,7 +28,7 @@ class Usuario(models.Model):
 
 
 class Postagem(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.UUIDField(primary_key = True, default = uuid.uuid4, editable = False)
     titulo = models.CharField(max_length=100)
     conteudo = models.TextField()
     criado_em = models.DateTimeField(auto_now_add=True)
