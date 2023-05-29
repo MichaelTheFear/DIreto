@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 import uuid
 # Create your models here.
 #Usuario
@@ -10,11 +11,9 @@ class Categoria(models.Model):
 
 
 
-
-class Usuario(models.Model):
-    nome = models.CharField(max_length=100)
-    email = models.EmailField(primary_key=True)
-    senha = models.CharField(max_length=50)
+# TODO mudar para User do django
+class Usuario(AbstractUser):
+    email = models.EmailField(unique=True, db_index=True,primary_key=True)
     matricula = models.CharField(max_length=7)
     informante = models.BooleanField(default=False)
     criado_em = models.DateTimeField(auto_now_add=True)
@@ -24,7 +23,7 @@ class Usuario(models.Model):
 
 
     def __str__(self):
-        return self.nome
+        return self.username
 
 
 class Postagem(models.Model):
