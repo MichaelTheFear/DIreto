@@ -10,11 +10,11 @@ def login(request):
     else:
         res, error = validate_login(request)
         if res:
+            # Pagina de sucesso de login
             return HttpResponse("O usuário autenticado com sucesso!")
         else:
+            # Pagina de erro de login
             return HttpResponse(error)
-        
-
 
 def cadastro(request):
     if request.method == 'GET':
@@ -22,9 +22,10 @@ def cadastro(request):
     else:
         res, error = signin(request)
         if res:
+            # Pagina de sucesso de cadastro
             return HttpResponse("O usuário foi cadastrado com sucesso!")
-            # Talvez mandar ele para a proxima pagina? 
         else:
+            # Pagina de erro de cadastro
             return HttpResponse(error)
 
 def index(request):
@@ -32,9 +33,6 @@ def index(request):
 
 def search(request):
     return HttpResponse("Busca")
-
-def login_error(request):
-    return HttpResponse("Login inválido")
 
 def cadastro_error(request):
     return HttpResponse("Cadastro inválido")
@@ -58,5 +56,3 @@ def configuracoes(request):
 def novo_post(request):
     return HttpResponse("Novo post")
 
-def novo_post_error(request):
-    return HttpResponse("Erro ao criar post")
