@@ -2,10 +2,10 @@ from DIreto.types import Response, Error
 from models import Usuario, Postagem, Categoria
 from emails import send_email
 
-publisher_args = ['titulo','conteudo','categoria','usuario']
+_publisher_args = ['titulo','conteudo','categoria','usuario']
 
 def publisher(post:dict) -> Response:
-    for arg in publisher_args:
+    for arg in _publisher_args:
         if post.get(arg) is None:
             return (None,f"{arg} não foi definido passado")
     
@@ -35,7 +35,11 @@ def subscriber(cat:str, user_email:str) -> Response:
         categoria = Categoria.objects.get(nome=cat)
         user.categoria.add(categoria)
         user.save()
-        return (user.__dict__,None)
+        res = {
+            'email':user.email,
+            'categoria':categoria.nome
+        }
+        return (res,None)
     except:
         return (None,"Usuario ou categoria não existem")
     
