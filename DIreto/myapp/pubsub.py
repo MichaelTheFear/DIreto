@@ -1,4 +1,4 @@
-from DIreto.types import Response, Error
+from myapp.types import Response, Error
 from models import Usuario, Postagem, Categoria
 from emails import send_email
 

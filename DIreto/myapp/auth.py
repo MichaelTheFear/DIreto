@@ -1,4 +1,4 @@
-from DIreto.types import Response, Error
+from myapp.types import Response, Error
 from myapp.models import Usuario as User
 from django.contrib.auth import authenticate, login as django_login
 
