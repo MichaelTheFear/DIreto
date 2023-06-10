@@ -1,14 +1,72 @@
 <html>
-    <head></head>
+    <head>
+        <style>
+            header{
+                height: 100px;
+                background: #FFFFFF;
+                box-shadow: 0px 4px 40px 16px rgba(0, 0, 0, 0.25);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .formWrapper{
+                display: flex;
+                justify-content: center;
+                margin:auto;
+                align-items: center;
+                width: 1164px;
+                height: 687px;
+                background: #F1F1F1;
+            }
+
+            form{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            h1{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            input{
+                border: 4px solid #007CC3;
+                border-radius: 20px;
+            }
+
+            img{
+                width: 96px;
+                height: 44px;
+            }
+        </style>
+    </head>
     <body>
-        <h1>Cadastro</h1>
-        <form action="{% url 'cadastro' %}" method="POST"> {% csrf_token %}
-            <input type="text" name="first_name" placeholder="Primeiro nome" />
-            <input type="text" name="second_name" placeholder="Sobrenome" />
-            <input type="email" name="email" placeholder="Email" />
-            <input type="password" name="password" placeholder="Password" />
-            <input type="password" name="confirm password" placeholder="Password" />
-            <input type="submit" value="Enviar" />
-        </form>
+        <header>
+            <div>Sandwich</div>
+            {% load static %}
+<img src="{% static '/logo.png' %}" alt="My image">
+            <div>
+                <div>Search</div>
+                <div>User</div>z
+            </div>
+        </header>
+        <div class="formWrapper">
+            <div>
+                <h1>Cadastro</h1>
+                <form action="{% url 'cadastro' %}" method="POST"> {% csrf_token %}
+                    <input type="text" name="first_name" placeholder="Primeiro nome" />
+                    <input type="text" name="second_name" placeholder="Sobrenome" />
+                    <input type="email" name="email" placeholder="Email" />
+                    <input type="text" name="matricula" placeholder="Matricula" />
+                    <input type="password" name="password" placeholder="Password" />
+                    <input type="password" name="confirm_password" placeholder="Password" />
+                    <input type="submit" value="Enviar" />
+                </form>
+            </div>
+        </div>
     </body>
 </html>

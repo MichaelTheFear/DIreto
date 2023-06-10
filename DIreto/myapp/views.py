@@ -20,7 +20,10 @@ def cadastro(request):
     if request.method == 'GET':
         return render(request, 'cadastro.html')
     else:
-        res, error = signin(request)
+        print(request.POST)
+        res = True 
+        error = "Ajjjjj"
+        #res, error = signin(request)
         if res:
             # Pagina de sucesso de cadastro
             return HttpResponse("O usuário foi cadastrado com sucesso!")

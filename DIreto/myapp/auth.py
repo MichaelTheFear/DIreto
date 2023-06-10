@@ -20,7 +20,7 @@ def validate_login(request) -> Response:
     return (None,"Usuário ou senha inválidos!")
 
 
-required_fields = ['email','first_name','last_name','password','matricula']
+required_fields = ['email','first_name','last_name','password','confirm_password','matricula']
 
 def signin(request) -> Response:
     POST = request.POST
@@ -31,7 +31,11 @@ def signin(request) -> Response:
             return (None,f"{field} não foi definido passado")
         else:
             user_att[field] = post_field
+    
+    if user_att['password'] != user_att['confirm_password']:
+        return (None,"Senhas não conhecidem!")
 
+    user_att.pop('confirm_password')
     user = User.objects.filter(email=user_att['email']).first()
     if user is not None:
         return (None,f"Usuário {user_att['email']} já existe!")
