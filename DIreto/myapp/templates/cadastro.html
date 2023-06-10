@@ -11,61 +11,128 @@
             }
 
             .formWrapper{
+                
                 display: flex;
                 justify-content: center;
-                margin:auto;
+                margin-left:auto;
+                margin-right:auto;
+                margin-bottom: auto;
+                margin-top: 50px;
                 align-items: center;
                 width: 1164px;
                 height: 687px;
-                background: #F1F1F1;
+                background: linear-gradient(180deg, #26264A 0%, #1B3B86 17.71%, #0093DD 100%);
             }
 
             form{
                 display: flex;
                 flex-direction: column;
-                justify-content: center;
+                justify-content: space-between;
                 align-items: center;
+            }
+
+            .inputWrapper{
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(3, 1fr);
+                grid-column-gap: 0px;
+                grid-row-gap: 0px;
             }
 
             h1{
                 display: flex;
+                width: 271px;
+                height: 76px;
                 justify-content: center;
+                margin: auto;
+                align-items: center;
+                font-style: normal;
+                font-weight: 400;
+                font-size: 64px;
+                line-height: 76px;
+                margin-bottom: 30px;
+            }
+
+            .campos{
+                border: 4px solid #007CC3;
+                border-radius: 20px;
+                margin: 10px;
+                width:467px;
+                height: 64px;
+                font-style: normal;
+                font-weight: 400;
+                font-size: 32px;
+                line-height: 38px;
+                display: flex;
                 align-items: center;
             }
 
-            input{
-                border: 4px solid #007CC3;
-                border-radius: 20px;
+            input::placeholder{
+                color: rgba(0, 0, 0, 0.35);
             }
 
             img{
                 width: 96px;
                 height: 44px;
             }
+
+            .enviar{
+                border-radius: 20px;
+                background: #0093DD;
+                border: #0093DD;
+                width: 220px;
+                height: 64px;
+                font-style: normal;
+                font-weight: 400;
+                font-size: 32px;
+                line-height: 38px;
+                display: flex;
+                align-items: center;
+                text-align: center;
+                justify-content: center;
+                color: #FFFFFF;
+                margin-top: 30px;
+            }
+
+            .backgrooundWrapper{
+                background: white;
+                width: 1144px;
+                height: 667px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+
+            
         </style>
     </head>
     <body>
         <header>
             <div>Sandwich</div>
-            {% load static %}
-<img src="{% static '/logo.png' %}" alt="My image">
+                {% load static %}
+                <img src="{% static '/logo.png' %}" alt="My image">
             <div>
                 <div>Search</div>
                 <div>User</div>z
             </div>
         </header>
         <div class="formWrapper">
-            <div>
-                <h1>Cadastro</h1>
-                <form action="{% url 'cadastro' %}" method="POST"> {% csrf_token %}
-                    <input type="text" name="first_name" placeholder="Primeiro nome" />
-                    <input type="text" name="second_name" placeholder="Sobrenome" />
-                    <input type="email" name="email" placeholder="Email" />
-                    <input type="text" name="matricula" placeholder="Matricula" />
-                    <input type="password" name="password" placeholder="Password" />
-                    <input type="password" name="confirm_password" placeholder="Password" />
-                    <input type="submit" value="Enviar" />
-                </form>
+            <div class="backgrooundWrapper">
+                <div>
+                    <h1>Cadastro</h1>
+                    <form action="{% url 'cadastro' %}" method="POST"> {% csrf_token %}
+                        <div class="inputWrapper">
+                            <input class="campos" type="text" name="first_name" placeholder="Primeiro nome" />
+                            <input class="campos" type="text" name="second_name" placeholder="Sobrenome" />
+                            <input class="campos" type="email" name="email" placeholder="Email" />
+                            <input class="campos" type="text" name="matricula" placeholder="Matricula" />
+                            <input class="campos" type="password" name="password" placeholder="Senha " />
+                            <input class="campos" type="password" name="confirm_password" placeholder="Confirmar senha" />
+                        </div>
+                        <input class="enviar" type="submit" value="Enviar" />
+                    </form>
+                </div>
             </div>
         </div>
     </body>
