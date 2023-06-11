@@ -40,7 +40,8 @@ def signin(request) -> Response:
     if user is not None:
         return (None,f"Usuário {user_att['email']} já existe!")
 
-    user = User.objects.create_user(**user_att) # type: ignore
+    user_att['username'] = user_att['matricula']
+    user = User.objects.create_user(**user_att)   # type: ignore
     user.save()
 
     return (True,None)
