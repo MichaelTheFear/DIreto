@@ -1,6 +1,13 @@
 <html>
     <head>
         <style>
+            body{
+                margin: 0;
+                padding: 0;
+                font-family: 'Roboto', sans-serif;
+                background: #FFFFFF;
+            }
+
             header{
                 height: 100px;
                 background: #FFFFFF;
@@ -71,8 +78,24 @@
                 color: rgba(0, 0, 0, 0.35);
             }
 
-            img{
+            .logo{
                 width: 96px;
+                height: 44px;
+            }
+
+            .menu{
+                width: 44px;
+                height: 44px;
+            }
+
+            .search{
+                width: 80px;
+                height: 44px;
+                margin-left: -50px;
+            }
+
+            .user{
+                width: 44px;
                 height: 44px;
             }
 
@@ -102,19 +125,21 @@
                 justify-content: center;
                 align-items: center;
             }
-
-
-            
         </style>
     </head>
     <body>
         <header>
-            <div>Sandwich</div>
+            {% load static %}
+            <img class="menu" src="{% static '/menu.png' %}" alt="My image">
+            <a href="/">
                 {% load static %}
-                <img src="{% static '/logo.png' %}" alt="My image">
+                <img class="logo" src="{% static '/logo.png' %}" alt="My image">
+            </a>
             <div>
-                <div>Search</div>
-                <div>User</div>z
+                {% load static %}
+                <img class="search" src="{% static '/search.png' %}" alt="My image">
+                {% load static %}
+                <img class="user" src="{% static '/user.png' %}" alt="My image">
             </div>
         </header>
         <div class="formWrapper">
@@ -124,12 +149,15 @@
                     <form action="{% url 'cadastro' %}" method="POST"> {% csrf_token %}
                         <div class="inputWrapper">
                             <input class="campos" type="text" name="first_name" placeholder="Primeiro nome" />
-                            <input class="campos" type="text" name="second_name" placeholder="Sobrenome" />
+                            <input class="campos" type="text" name="last_name" placeholder="Sobrenome" />
                             <input class="campos" type="email" name="email" placeholder="Email" />
                             <input class="campos" type="text" name="matricula" placeholder="Matricula" />
                             <input class="campos" type="password" name="password" placeholder="Senha " />
                             <input class="campos" type="password" name="confirm_password" placeholder="Confirmar senha" />
                         </div>
+                        {% if error %}
+                            <p style="color: red">{{ error }}</p>
+                        {% endif %}
                         <input class="enviar" type="submit" value="Enviar" />
                     </form>
                 </div>

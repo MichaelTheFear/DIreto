@@ -27,7 +27,7 @@ def signin(request) -> Response:
     user_att = {}
     for field in required_fields:
         post_field = POST.get(field)
-        if post_field is None:
+        if post_field in [None,''," "]:
             return (None,f"{field} não foi definido passado")
         else:
             user_att[field] = post_field
